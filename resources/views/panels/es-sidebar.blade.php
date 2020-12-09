@@ -20,8 +20,7 @@
                 <span class="badge badge badge-warning badge-pill float-right"></span>
                 </a>
                 </li>
-                <li class=" nav-item {{ (request()->is('es/registrations')) ? 'active' : '' }}"><a href="{{route('es.registrations')}}"><i class="feather icon-zap"></i><span class="menu-title" data-i18n="Dashboard">Registrations</span><span class="badge badge badge-warning badge-pill float-right">2</span></a>
-                </li>
+               
                 <!-- <li class=" nav-item"><a href="#"><i class="feather icon-book"></i><span class="menu-title" data-i18n="Starter kit">Compensation Plan</span></a>
                     <ul class="menu-content">
                         <li class="active"><a href="sk-layout-2-columns.html"><i></i><span class="menu-item" data-i18n="2 columns">Emerald Package</span></a>
@@ -36,7 +35,7 @@
                         </li>
                     </ul>
                 </li> -->
-                <li class=" {{ (request()->is('/user/packages')) ? 'active' : '' }} nav-item"><a href="">
+                <li class=" {{ (request()->is('es/applications')) ? 'active' : '' }} nav-item"><a href="{{route('es.applications')}}">
                 <i class="feather icon-arrow-down"></i></i><span class="menu-title" data-i18n="Documentation">Applications</span></a>
                 </li>
 

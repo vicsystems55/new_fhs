@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth','es'], 'prefix' => 'es'], function(){
 
   Route::get('/single_account/{id}', 'ESPageController@single_account')->name('es.single_account');
 
-  Route::get('/applications', 'ESPageController@index')->name('es.applications');
+  Route::get('/applications', 'ESPageController@applications')->name('es.applications');
 
   Route::get('/staff', 'ESPageController@index')->name('es.staff');
 
@@ -115,18 +115,22 @@ Route::group(['middleware' => ['auth','user'], 'prefix' => 'user'], function(){
 
   Route::get('/', 'UsersPageController@index')->name('user');
   Route::get('/notifications', 'UsersPageController@notifications')->name('user.notifications');
-  Route::get('/profile', 'UsersPageController@profile')->name('user.profile');
-  Route::get('/profile2', 'UsersPageController@profile2')->name('user.profile2');
+  Route::get('/profile', 'UsersPageController@profile')->name('user.profile')->middleware('application_stage');
+  Route::get('/profile2', 'UsersPageController@profile2')->name('user.profile2')->middleware('application_stage');
 
-  Route::get('/profile3', 'UsersPageController@profile3')->name('user.profile3');
+  Route::get('/profile3', 'UsersPageController@profile3')->name('user.profile3')->middleware('application_stage');
 
   
-  Route::get('/profile/ministry', 'UsersPageController@ministry')->name('user.ministry');
+  Route::get('/profile/ministry', 'UsersPageController@ministry')->name('user.ministry')->middleware('application_stage');
+  Route::get('/profile/military', 'UsersPageController@military')->name('user.military')->middleware('application_stage');
+
   Route::get('/profile/military', 'UsersPageController@military')->name('user.military');
 
-  Route::get('/profile3', 'UsersPageController@profile3')->name('user.profile3');
-  Route::get('/view_profile', 'UsersPageController@view_profile')->name('user.view_profile');
-  Route::get('/uploads', 'UsersPageController@profile3')->name('user.uploads');
+  Route::post('/registry_submit', 'ApplicationStageController@stage1')->name('user.registry_submit');
+
+  Route::get('/profile3', 'UsersPageController@profile3')->name('user.profile3')->middleware('application_stage');
+  Route::get('/view_profile', 'UsersPageController@view_profile')->name('user.view_profile')->middleware('application_stage');
+  Route::get('/uploads', 'UsersPageController@profile3')->name('user.uploads')->middleware('application_stage');
   Route::get('/userloans', 'UsersPageController@userloans')->name('user.userloans');
   Route::get('/userloans/loan_application', 'UsersPageController@loan_application')->name('user.loan_application');
 
@@ -211,4 +215,7 @@ Route::post('uploadLoanDeclration', 'DocumentUploadController@uploadLoanDeclrati
 Route::post('uploadCertificate', 'DocumentUploadController@uploadCertificate')->name('uploadCertificate')->middleware('auth');
 // route to get all loan documents
 Route::get('getLoanDocuments/{filename}', [DocumentUploadController::class,'getPubliclyStorgeFileLoanDocuments'])->name('loan.displayImage');
+
+
+Route::view('/spinner', 'pages.user.under_processing');
 

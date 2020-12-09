@@ -16,6 +16,8 @@ use App\Parastatal;
 
 use App\DocumentUpload;
 
+use App\ApplicationStage;
+
 use Auth;
 
 use Carbon\Carbon;
@@ -40,10 +42,11 @@ class UsersPageController extends Controller
             'pageHeader' => true
         ];
 
-        $user_logs = ActivityLog::where('action_by', Auth::user()->id)->where('title','!=', 'User Authentication')->get();
-
+        $user_logs = ActivityLog::latest()->where('action_by', Auth::user()->id)->where('title','!=', 'User Authentication')->get();
+        $application_stage = ApplicationStage::where('user_id', Auth::user()->id)->first();
         return view('pages.user-dashboard', [
             'pageConfigs' => $pageConfigs,
+            'application_stage' => $application_stage,
             'user_logs' => $user_logs
         ]);
     }

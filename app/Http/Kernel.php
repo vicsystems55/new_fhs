@@ -66,6 +66,7 @@ class Kernel extends HttpKernel
         'deskoffice' => \App\Http\Middleware\DeskOfficeMiddleware::class,
         'es' => \App\Http\Middleware\ESMiddleware::class,
         'user' => \App\Http\Middleware\UserMiddleware::class,
+        'application_stage' => \App\Http\Middleware\ApplicationStageMiddleware::class,
 
 
     ];

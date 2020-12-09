@@ -21,7 +21,15 @@
                 <div class="card-header">
                     @if($user_doc->count()>= 7 && $personal_data)
 
-                    <a class="btn btn-block btn-primary shadow" href="">Submit To Registra</a>
+                    <form style="width:100%;" method="post" action="{{route('user.registry_submit')}}">
+                    @csrf
+                        <input type="hidden" name="pinfo_slug" value="{{$personal_data->slug}}">
+                    <div class="form-group">
+                    <button  class="btn btn-block btn-primary shadow" >Submit To Registra</button>
+                    </div>
+                    </form>
+
+                    
 
                     @else
 

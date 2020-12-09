@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\ActivityLog;
+
+use Auth;
+
 class ESPageController extends Controller
 {
     /**
@@ -20,8 +24,11 @@ class ESPageController extends Controller
             'pageHeader' => true
         ];
 
+        $activity_log = ActivityLog::latest()->where('action_by', Auth::user()->id)->get();
+
         return view('/pages/es-dashboard', [
-            'pageConfigs' => $pageConfigs
+            'pageConfigs' => $pageConfigs,
+            'user_logs' => $activity_log
         ]);
     }
 
@@ -31,6 +38,8 @@ class ESPageController extends Controller
         $pageConfigs = [
             'pageHeader' => true
         ];
+
+        
 
         return view('/pages/es/all_applications', [
             'pageConfigs' => $pageConfigs

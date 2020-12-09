@@ -29,9 +29,9 @@
             <div class="text-center">
               <h1 class="mb-2 text-white">Welcome, {{Auth::user()->firstname}} {{Auth::user()->surname}}</h1>
               <h3 class="mb-2 text-white">IPPIS NUMBER: {{Auth::user()->ippis_no}}</h3>
-            <!--   <h1 class="mb-2 text-white">FILE NUMBER: {{Auth::user()->file_no}},</h1> -->
+              <h3 class="{{Auth::user()->status =='verified' ?'':'d-none'}} mb-2 text-white">FILE NUMBER: {{Auth::user()->file_no}}</h3>
              <!--  <p class="m-auto w-75">You have done <strong>57.6%</strong> more sales today. Check your new badge in your
-                profile.</p> -->
+                profile.</p>-->
             </div>
           </div>
         </div>
@@ -101,7 +101,7 @@
             <div class="card-body text-center mx-auto " style="height: 180.556px;">
             <p class="
             {{Auth::user()->status =='verified' ?'text-white':''}}
-            ">Application Form</p>
+            ">Application Form N 1000</p>
               <div class="">
                 <img width="120" height="120" class="img-fluid" src="{{config('app.url')}}/images/cardz.png" alt="img placeholder">
               </div>
@@ -135,11 +135,13 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}"> {{-- employ this in place of csrf_field only in laravel 5.0 --}}
             
                           
-                                <button class="btn gradient-light-success btn-block waves-effect waves-light" type="submit" value="Pay Now!">
-                                    <i class="fa fa-plus-circle fa-lg"></i> Pay NGN 1000
+                                <button class="btn gradient-light-success btn-sm btn-block waves-effect waves-light mb-1" type="submit" value="Pay Now!">
+                                    <i class="fa fa-plus-circle fa-lg"></i> Pay with Paystack
                                 </button>
                      
                   </form>
+                      
+                  <button class="btn btn-block btn-sm btn-primary shadow">Pay with Remita</button>
 
 
                 @endif
@@ -149,11 +151,11 @@
     </div>
     <div class="col-md-3 col-12">
      
-     <div class="card" style="height: 325.556px;">
+     <div class="card {{$application_stage?'bg-success text-white':''}}" style="height: 325.556px;">
           <div class="card-header mx-auto pb-0">
             <div class="row m-0">
               <div class="col-sm-12 text-center">
-                <h2>Step 2</h2>
+                <h2 class="{{$application_stage?'text-white':''}}">Step 2</h2>
               </div>
             
             </div>
@@ -166,7 +168,7 @@
               </div>
               
             </div>
-            <div class="card-footer">
+            <div class=" {{$application_stage?'d-none':''}} card-footer">
             <a href="{{route('user.profile')}}" class="btn gradient-light-primary btn-block waves-effect waves-light">Get Started</a>
 
             </div>
