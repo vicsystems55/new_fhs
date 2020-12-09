@@ -23,7 +23,7 @@ class ApplicationStageMiddleware
         
         $application_stage = ApplicationStage::where('user_id', $user_id)->first();
 
-        if($application_stage->stage=="Stage1"){
+        if($application_stage && $application_stage->stage=="Stage1"){
 
 
 

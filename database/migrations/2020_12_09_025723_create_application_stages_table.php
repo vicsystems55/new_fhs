@@ -19,6 +19,7 @@ class CreateApplicationStagesTable extends Migration
             $table->bigInteger('personalinfo_id')->unsigned();
             $table->string('stage');
             $table->string('description');
+            $table->string('status')->default('active');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('personalinfo_id')->references('id')->on('personal_infos');
             $table->timestamps();

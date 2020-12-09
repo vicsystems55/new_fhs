@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth','es'], 'prefix' => 'es'], function(){
 
   Route::get('/single_account/{id}', 'ESPageController@single_account')->name('es.single_account');
 
-  Route::get('/applications', 'ESPageController@applications')->name('es.applications');
+  Route::get('/applications', 'ESPageController@all_applications')->name('es.applications');
 
   Route::get('/staff', 'ESPageController@index')->name('es.staff');
 

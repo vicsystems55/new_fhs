@@ -8,4 +8,10 @@ class ApplicationStage extends Model
 {
     //
     protected $guarded = [];
+
+    public function personalinfo()
+    {
+        # code...
+        return $this->belongsTo('App\PersonalInfo');
+    }
 }

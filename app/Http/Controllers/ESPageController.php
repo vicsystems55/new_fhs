@@ -8,6 +8,8 @@ use App\User;
 
 use App\ActivityLog;
 
+use App\ApplicationStage;
+
 use Auth;
 
 class ESPageController extends Controller
@@ -38,6 +40,10 @@ class ESPageController extends Controller
         $pageConfigs = [
             'pageHeader' => true
         ];
+
+        $submitted_records = ApplicationStage::with('personalinfo')->get();
+
+        dd($submitted_records->personalinfo->user_id);
 
         
 
